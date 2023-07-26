@@ -56,6 +56,22 @@ Add the following content to the file:
 </VirtualHost>
 ```
 
+```
+<VirtualHost *:443>
+    ServerName yourdomain.com
+    ServerAlias *.yourdomain.com
+    ServerAdmin admin@yourdomain.com
+
+    ProxyPreserveHost On
+    ProxyPass / http://localhost:your_observium_port/
+    ProxyPassReverse / http://localhost:your_observium_port/
+
+    SSLEngine on
+    SSLCertificateFile /etc/letsencrypt/live/yourdomain.com/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/yourdomain.com/privkey.pem
+</VirtualHost>
+```
+
 Replace `yourdomain.com` with your actual domain name and `your_observium_port` with the port Observium is running on.
 
 Save and close the file.
